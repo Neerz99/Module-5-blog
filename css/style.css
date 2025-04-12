@@ -362,30 +362,35 @@ footer {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
+    width: 100%;
 }
 
-.articleInfo {
+.articleInfo, .labels {
     border: 1px solid var(--headerColor);
     padding: 10px;
     margin: 2px;
     display: flex;
-    background: var(--commentPaleColor);
     color: white;
 }
 
-.articleInfo .titre {
+.labels {
+    background-color: var(--commentColor);
+    font-weight: bold;
+}
+
+.articleInfo .titre, .labels .titre {
     font-weight: bold;
     margin-right: 20px;
+    flex: 2;
 }
 
-.articleInfo .vues {
-    margin-left: auto;
-    margin-right: 20px;
-}
-
-.articleInfo .commentaires {
-    margin-left: 20px;
-    margin-right: 20px;
+.articleInfo .vues, .labels .vues,
+.articleInfo .commentaires, .labels .commentaires,
+.articleInfo .date, .labels .date {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .filters {

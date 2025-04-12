@@ -25,9 +25,9 @@ class MonitoringController
             $article->commentCount = $commentManager->countCommentsByArticle($articleId);
         }
 
-        // Tri des articles selon les paramètres GET (ou POST)
+        // Tri des articles selon les paramètres GET
         if (isset($_GET['sortBy']) && isset($_GET['order'])) {
-            $sortBy = $_GET['sortBy'];  // Par exemple: 'title', 'vues', 'commentaires', 'date'
+            $sortBy = $_GET['sortBy'];  // Par exemple: 'title', 'vues'
             $order = $_GET['order'];    // Par exemple: 'asc' ou 'desc'
 
             usort($articles, function($a, $b) use ($sortBy, $order) {
@@ -54,7 +54,11 @@ class MonitoringController
                         break;
                 }
 
-                // Tri croissant ou décroissant
+                /*
+                 *  0 if $a == $b
+                 *  -1 if $a < $b
+                 *  1 if $a > $b                 *
+                 */
                 if ($order === 'asc') {
                     return $valueA <=> $valueB;  // Tri ascendant
                 } else {

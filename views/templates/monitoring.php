@@ -27,12 +27,21 @@
         <button class="triBtn" type="submit">Trier</button>
     </form>
 
-    <?php foreach ($articles as $article) { ?>
-        <div class="articleInfo">
-            <div class="titre"><?= $article->getTitle() ?></div>
-            <div class="vues"><?= $article->getVues() ?> vues</div>
-            <div class="commentaires"><?= htmlspecialchars($article->commentCount) ?> commentaires</div>
-            <div class="date">Date de publication : <?= Utils::convertDateToFrenchFormat($article->getDateCreation()) ?></div>
+    <div class="labels">
+        <div class="titre"><strong>Titre</strong></div>
+        <div class="vues"><strong>Vues</strong></div>
+        <div class="commentaires"><strong>Commentaires</strong></div>
+        <div class="date"><strong>Date de publication</strong></div>
+    </div>
+
+    <?php foreach ($articles as $index => $article) {
+        $bgColor = $index % 2 === 0 ? 'var(--commentPaleColor)' : 'var(--headerColor)';
+        ?>
+        <div class="articleInfo" style="background-color: <?= $bgColor ?>;">
+            <div class="titre"><?= htmlspecialchars($article->getTitle()) ?></div>
+            <div class="vues"><?= htmlspecialchars($article->getVues()) ?></div>
+            <div class="commentaires"><?= htmlspecialchars($article->commentCount) ?></div>
+            <div class="date"><?= htmlspecialchars(Utils::convertDateToFrenchFormat($article->getDateCreation())) ?></div>
         </div>
     <?php } ?>
 </div>
